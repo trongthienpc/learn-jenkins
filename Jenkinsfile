@@ -18,6 +18,11 @@ pipeline {
 
     stage('Build docker image') {
       steps {
+         // Configure Docker executable path
+        script {
+          def dockerHome = tool 'docker'
+          env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
         // build the docker image
         script {
           docker.build("hello-app-1")
