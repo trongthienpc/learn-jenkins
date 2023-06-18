@@ -1,23 +1,27 @@
 pipeline {
   agent any
 
-  tools {
-    nodejs '20.3'
-  }
-
   stages {
-    stage('Kiểm tra mã nguồn') {
+    stage(' Merge dev to main') {
       steps {
-        // Thực hiện các bước kiểm tra mã nguồn ở đây
-        sh 'npm install' // Cài đặt các dependencies của ứng dụng
-        sh 'npm test' // Chạy kiểm tra mã nguồn
+        // checkout the repository
+        git credentialsId: 'github-token', url: 'https://github.com/trongthienpc/learn-jenkins'
+
+        // switch to the main branch
+        sh 'git checkout main'
+
+        // merge dev branch to the main branch
+        sh 'git merge dev'
+
+        // push the changes to the remote branch
+        sh 'git push origin main'
       }
     }
-    
-    stage('Xây dựng ứng dụng') {
+
+    stage('Build docker image') {
       steps {
-        // Thực hiện các bước xây dựng ứng dụng ở đây
-        sh 'npm run build' // Xây dựng ứng dụng
+        // build the docker image
+        sh 'Docker build -t hello-app:latest .'
       }
     }
   }
