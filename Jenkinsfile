@@ -16,21 +16,8 @@ pipeline {
       }
     }
 
-    stage('Setup Docker') {
-      steps {
-          // Configure Docker executable path
-          script {
-              def dockerHome = tool 'docker'
-              env.PATH = "${dockerHome}/bin:${env.PATH}"
-          }
-      }
-  }
-
     stage('Build docker image') {
-      steps {
-        // build the docker image
-        sh 'Docker build -t hello-app:latest .'
-      }
+      docker.build("hello-app")
     }
   }
 }
