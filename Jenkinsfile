@@ -18,7 +18,7 @@ pipeline {
 
     stage('Build docker image') {
       steps {
-        scripts { 
+        script { 
           docker.build("hello-app")
         }
       }
