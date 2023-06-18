@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  environment {
+    PATH = "$DOCKER_HOME/bin:$PATH"
+  }
+
   stages {
     stage(' Merge dev to main') {
       steps {
