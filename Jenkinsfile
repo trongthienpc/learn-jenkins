@@ -20,7 +20,7 @@ pipeline {
       steps {
         // build the docker image
         script {
-          docker.build("hello-app")
+          docker.build("hello-app-1")
         }
       }
     }
