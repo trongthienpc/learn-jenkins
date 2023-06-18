@@ -4,9 +4,7 @@ pipeline {
   stages {
     stage(' Merge dev to main') {
       steps {
-        // checkout the repository
-        git credentialsId: 'github-token', url: 'https://github.com/trongthienpc/learn-jenkins'
-
+       
         // switch to the main branch
         sh 'git checkout main'
 
