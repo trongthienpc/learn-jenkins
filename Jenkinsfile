@@ -19,7 +19,9 @@ pipeline {
     stage('Build docker image') {
       steps {
         // build the docker image
-        sh 'Docker build -t hello-app:latest .'
+        script {
+          docker.build("hello-app")
+        }
       }
     }
   }
