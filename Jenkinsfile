@@ -17,7 +17,11 @@ pipeline {
     }
 
     stage('Build docker image') {
-      docker.build("hello-app")
+      steps {
+        scripts { 
+          docker.build("hello-app")
+        }
+      }
     }
   }
 }
