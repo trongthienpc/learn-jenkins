@@ -9,7 +9,7 @@ pipeline {
         sh 'git checkout main'
 
         // merge dev branch to the main branch
-        sh 'git merge dev'
+        sh 'git merge origin/dev'
 
         // push the changes to the remote branch
         sh 'git push origin main'
